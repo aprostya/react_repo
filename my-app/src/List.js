@@ -20,6 +20,16 @@ const FilmComponent = () => (
     />
 )
 
+const AnotherFilm = () => (
+    <Movie
+        title="2001: A Space Odyssey"
+        src={
+            "http://is2.mzstatic.com/image/thumb/Video118/v4/79/a6/3f/79a63fde-fc31-d112-1646-f1591d006f71/source/1200x630bb.jpg"
+        }
+        type={"submit"}
+    />
+)
+
 const BasicExample = () => (
     <Router>
         <div>
@@ -32,7 +42,7 @@ const BasicExample = () => (
                 </li>
             </ul>
             <hr/>
-            <Route exact path="/" component={FilmsInfo}/>
+            <Route exact path="/" component={AnotherFilm}/>
             <Route exact path="/films" component={FilmComponent}/>
         </div>
     </Router>
