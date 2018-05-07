@@ -8,8 +8,6 @@ import {render} from "react-dom";
 
 
 
-
-
 // рендерим
 function Movies() {
     const state = {
