@@ -8,11 +8,9 @@ import {render} from "react-dom";
 function Img(props) {
     return <img src={props.src} className={props.className} alt={props.alt}/>;
 }
-
 function Buttons(props) {
     return <button {...props} />;
 }
-
 //styles
 const StButtons = styled(Buttons) `
   width: 200px;
@@ -30,6 +28,13 @@ const StButtonsRed = StButtons.extend `
   height: auto;
 `;
 
+
+
+
+
+    {/*<Image src="https://i.imgur.com/82kaBeI.jpg"/>*/}
+
+
 function Movie(props) {
     return (
         <div className="movie-page">
@@ -40,11 +45,26 @@ function Movie(props) {
                 type="button"
                 children="info">
             </StButtons>
-            <StButtonsRed className="btn-info" type="submit" children="Book now!"/>
+            <StButtonsRed className="btn-info" onClick={handleClick} id="bookBtn" type="submit" children="Click me: 0"/>
         </div>
     );
 }
 
+const button = document.getElementById("my-button");
+
+// вешаем на него клик
+
+
+
+var count = 0;
+
+function handleClick() {
+        const button = document.getElementById("bookBtn");
+        count++;
+        button.innerHTML = "Click me: " + count;
+        console.log(count);
+
+    }
 
 export default Movie;
 

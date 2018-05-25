@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import Movie from "./App";
 import {BrowserRouter as Router, Route, Link} from "react-router-dom";
 import {render} from "react-dom";
-
+import Images from "./imageList";
 const FilmsInfo = () => (
     <div>
         <h1>Film Info</h1>
@@ -18,7 +18,8 @@ const FilmComponent = () => (
         }
         type={"submit"}
     />
-)
+);
+
 
 const AnotherFilm = () => (
     <Movie
@@ -28,7 +29,12 @@ const AnotherFilm = () => (
         }
         type={"submit"}
     />
-)
+);
+
+const ThirdFilm = () => (
+    <Images src="https://i.imgur.com/wycmlAg.jpg" />,
+    <Images src="https://i.imgur.com/82kaBeI.jpg" />
+);
 
 const BasicExample = () => (
     <Router>
@@ -38,12 +44,16 @@ const BasicExample = () => (
                     <Link to="/">Home</Link>
                 </li>
                 <li>
-                    <Link to="/films">Film</Link>
+                    <Link to="/films/1">Film</Link>
+                </li>
+                <li>
+                    <Link to="/films/2">Film2</Link>
                 </li>
             </ul>
             <hr/>
             <Route exact path="/" component={AnotherFilm}/>
-            <Route exact path="/films" component={FilmComponent}/>
+            <Route exact path="/films/1" component={FilmComponent}/>
+            <Route exact path="/films/2" component={ThirdFilm}/>
         </div>
     </Router>
 );
