@@ -3,12 +3,43 @@ import ReactDOM from "react-dom";
 import Movie from "./App";
 import {BrowserRouter as Router, Route, Link} from "react-router-dom";
 import {render} from "react-dom";
+// import Toggle from "./ChangeColor";
 import Images from "./imageList";
 const FilmsInfo = () => (
     <div>
         <h1>Film Info</h1>
     </div>
 );
+
+const green = '#39D1B4';
+const yellow = '#FFD712';
+
+class Toggle extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = { color: green };
+        this.changeColor = this.changeColor.bind(this);
+    }
+
+    changeColor() {
+        const newColor = this.state.color == green ? yellow : green;
+        this.setState({ color: newColor });
+    }
+
+    render() {
+        return (
+            <div style={{background: this.state.color}}>
+                <h1>
+                    Change my color
+                </h1>
+                <button onClick={this.changeColor}>
+                    Change color
+                </button>
+            </div>
+        );
+    }
+}
+
 
 const FilmComponent = () => (
     <Movie
@@ -49,11 +80,15 @@ const BasicExample = () => (
                 <li>
                     <Link to="/films/2">Film2</Link>
                 </li>
+                <li>
+                    <Link to="/changecolor">Change Color</Link>
+                </li>
             </ul>
             <hr/>
             <Route exact path="/" component={AnotherFilm}/>
             <Route exact path="/films/1" component={FilmComponent}/>
             <Route exact path="/films/2" component={ThirdFilm}/>
+            <Route exact path ="/changecolor" component={Toggle}/>
         </div>
     </Router>
 );

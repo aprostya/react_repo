@@ -29,8 +29,40 @@ const StButtonsRed = StButtons.extend `
 `;
 
 
+const inline = 'inline';
+const none = 'none';
+
+class MovieTexts extends React.Component {
+    render(props) {
+        return <p {...this.props}/>
+    }
+}
 
 
+class ToggleButton extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {toggle: inline};
+        this.showText = this.showText.bind(this);
+
+    }
+    showText() {
+        const changeText = this.state.toggle == inline ? none : inline;
+        this.setState({toggle: changeText});
+    }
+
+    render() {
+        return (
+            <StButtons
+                className="btn-test"
+                type="button"
+                children="info"
+                style={{display: this.state.toggle}}
+                onClick={this.showText}>
+            </StButtons>
+        )
+    }
+}
 
     {/*<Image src="https://i.imgur.com/82kaBeI.jpg"/>*/}
 
@@ -40,11 +72,8 @@ function Movie(props) {
         <div className="movie-page">
             <Img className="movie-img" src={props.src} alt={props.title}/>
             <h1 className="movie-title">{props.title}</h1>
-            <StButtons
-                className="btn-test"
-                type="button"
-                children="info">
-            </StButtons>
+            <ToggleButton/>
+            <MovieTexts children = {"HEROINE SPORT"}/>
             <StButtonsRed className="btn-info" onClick={handleClick} id="bookBtn" type="submit" children="Click me: 0"/>
         </div>
     );
@@ -52,20 +81,16 @@ function Movie(props) {
 
 const button = document.getElementById("my-button");
 
+
 // вешаем на него клик
 
 
-
 var count = 0;
-
 function handleClick() {
         const button = document.getElementById("bookBtn");
         count++;
         button.innerHTML = "Click me: " + count;
-        console.log(count);
-
     }
-
 export default Movie;
 
 // class Movie extends React.Component {
