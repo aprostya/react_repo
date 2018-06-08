@@ -1,24 +1,19 @@
-const path = require("path");
+const webpack = require('webpack');
 
 module.exports = {
-    mode: "development",
-    entry: "./src/index.js",
+    entry: './src/index.js',
     output: {
-        filename: "bundle.js",
-        path: path.join(__dirname, "build")
+        path: __dirname + '/public',
+        filename: 'bundle.js'
     },
     module: {
-        rules: [
+        loaders: [
             {
-                test: /\.js$/, // регулярное выражение
-                exclude: path.join(__dirname, "node_modules"),
-                use: {
-                    loader: "babel-loader",
-                    options: {
-                        presets: ["babel-preset-env", "babel-preset-react"]
-                    }
-                }
+                test: /.jsx?$/,
+                loader: 'babel-loader',
+                exclude: /node_modules/
             }
         ]
     }
 };
+
